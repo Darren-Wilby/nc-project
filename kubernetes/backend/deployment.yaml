@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-backend
+  template:
+    metadata:
+      labels:
+        app: java-backend
+    spec:
+      containers:
+      - name: java-backend-container
+        image: public.ecr.aws/a7h7p8n1/java-backend:1.0
+        ports:
+        - containerPort: 8080
+        # env:
+        #   - name: DATABASE_HOST
+        #     value: database-service.default.svc.cluster.local
