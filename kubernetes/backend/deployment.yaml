@@ -13,10 +13,7 @@ spec:
         app: java-backend
     spec:
       containers:
-      - name: java-backend-container
-        image: public.ecr.aws/a7h7p8n1/java-backend:1.0
-        ports:
-        - containerPort: 8080
-        # env:
-        #   - name: DATABASE_HOST
-        #     value: database-service.default.svc.cluster.local
+        - name: java-backend-container
+          image: public.ecr.aws/a7h7p8n1/java-backend:3.0
+          ports:
+            - containerPort: 8080
