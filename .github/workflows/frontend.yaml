@@ -1,0 +1,36 @@
+name: Frontend Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-image-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Log in to AWS ECR Public
+        run: |
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/a7h7p8n1
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t react-frontend-img:latest .
+          docker tag react-frontend-img:latest public.ecr.aws/a7h7p8n1/react-frontend-ecr:${{ github.run_number }}
+          docker push public.ecr.aws/a7h7p8n1/react-frontend-ecr:${{ github.run_number }}
+
+      - name: Remove local Docker Image
+        run: |
+          docker rmi react-frontend-img:latest
