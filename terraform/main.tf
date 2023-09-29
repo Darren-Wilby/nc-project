@@ -56,25 +56,6 @@ resource "aws_default_security_group" "main" {
   }
 }
 
-# Create AWS ECR repositories for frontend and backend
-resource "aws_ecr_repository" "react_frontend" {
-  name = "react-frontend-ecr"
-
-  # Configure image scanning for the repository
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
-
-resource "aws_ecr_repository" "java_backend" {
-  name = "java-backend-ecr"
-
-  # Configure image scanning for the repository
-  image_scanning_configuration {
-    scan_on_push = true
-  }
-}
-
 # Create an Amazon RDS PostgreSQL database instance
 resource "aws_db_instance" "main" {
   allocated_storage      = 10
