@@ -2,7 +2,10 @@
 FROM node:16
 
 # Set the working directory in the container
-WORKDIR /app/react-frontend
+WORKDIR /app
+
+# Change directory
+RUN cd react-frontend
 
 # Copy the package.json and package-lock.json files to the container
 COPY package*.json ./

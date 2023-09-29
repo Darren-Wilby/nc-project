@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t react-frontend-img:latest react-frontend/Dockerfile .
+          docker build -t react-frontend-img:latest -f react-frontend/Dockerfile .
           docker tag react-frontend-img:latest public.ecr.aws/a7h7p8n1/react-frontend-ecr:${{ github.run_number }}
           docker push public.ecr.aws/a7h7p8n1/react-frontend-ecr:${{ github.run_number }}
 
