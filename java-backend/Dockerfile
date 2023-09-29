@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 FROM maven:3-openjdk-17 AS build
 
 # Set the working directory within the container to /app
-WORKDIR /app
+WORKDIR /app/java-backend
 
 # Copy the application source code from the host's src directory to the container's /app/src directory
 COPY src src
