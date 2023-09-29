@@ -19,7 +19,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: eu-west-2
 
       - name: Log in to AWS ECR Public
         run: |
@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t java-backend-img:latest .
+          docker build -t java-backend-img:latest -f java-backend/Dockerfile .
           docker tag java-backend-img:latest public.ecr.aws/a7h7p8n1/java-backend-ecr:${{ github.run_number }}
           docker push public.ecr.aws/a7h7p8n1/java-backend-ecr:${{ github.run_number }}
 

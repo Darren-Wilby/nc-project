@@ -56,6 +56,21 @@ resource "aws_default_security_group" "main" {
   }
 }
 
+# Create Private ECRs for Frontend and Backend
+resource "aws_ecr_repository" "frontend" {
+  name                 = "react-frontend-ecr"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
+resource "aws_ecr_repository" "backend" {
+  name                 = "java-backend-ecr"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
 # Create an Amazon RDS PostgreSQL database instance
 resource "aws_db_instance" "main" {
   allocated_storage      = 10
