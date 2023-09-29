@@ -1,0 +1,12 @@
+# Ignore development and build-related files
+node_modules/
+dist/
+public/
+
+# Ignore version control files
+.git
+.gitignore
+
+# Ignore package manager lock files
+package-lock.json
+yarn.lock
