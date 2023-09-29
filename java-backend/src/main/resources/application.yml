@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,prometheus"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://lms-db.cboyzymbgeqa.eu-west-2.rds.amazonaws.com:5432/db1
+    username: postgres
+    password: mysecretpassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
