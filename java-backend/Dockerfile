@@ -7,18 +7,15 @@ FROM maven:3-openjdk-17 AS build
 # Set the working directory within the container to /app
 WORKDIR /app
 
-# Change directory
-RUN cd java-backend
-
 # Copy the application source code from the host's src directory to the container's /app/src directory
-COPY src src
+COPY java-backend/src src
 
 # Copy the project's POM (pom.xml) file to the current directory (/app)
-COPY pom.xml .
+COPY java-backend/pom.xml .
 
 # Build the application using Maven
 RUN mvn package
 
 # Specify the command to run your Java application when the container starts
-CMD ["java", "-jar", "target/learners-api-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "java-backend/target/learners-api-1.0-SNAPSHOT.jar"]
 

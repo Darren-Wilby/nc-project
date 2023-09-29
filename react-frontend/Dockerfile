@@ -4,17 +4,14 @@ FROM node:16
 # Set the working directory in the container
 WORKDIR /app
 
-# Change directory
-RUN cd react-frontend
-
 # Copy the package.json and package-lock.json files to the container
-COPY package*.json ./
+COPY react-frontend/package*.json ./
 
 # Install the project dependencies
 RUN npm install
 
 # Copy the rest of the application code to the container
-COPY . .
+COPY react-frontend/. .
 
 # Build your React application (you may need to adjust this based on your project)
 RUN npm run build
